@@ -18,6 +18,7 @@ class IncomeType extends Model
 
     protected $fillable = [
         'name' => 'string',
+        'description'=> 'string',
         'active' => 'boolean'
     ];
 }
