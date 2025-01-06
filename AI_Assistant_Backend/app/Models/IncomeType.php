@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class IncomeType extends Model
 {
     /** @use HasFactory<\Database\Factories\IncomeTypeFactory> */
-    use HasFactory;
+    use HasFactory, Uuid;
 
     protected $primaryKey = 'id';
     public $incrementing = false;
