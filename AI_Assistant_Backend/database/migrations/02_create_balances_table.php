@@ -11,8 +11,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('balances', function (Blueprint $table) {
-            $table->id();
+        Schema::create('fp.balances', function (Blueprint $table) {
+            $table->uuid('id')->primary()->unique();
+
+            $table->uuid('user_id');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onUpdate('cascade');
+            
+            $table->uuid('income_id');
+            $table->foreign('income_id')
+            ->references('id')
+            ->on('fp.incomes')
+            ->onUpdate('cascade');
+
+            $table->uuid('expense_id');
+            $table->foreign('expense_id')
+            ->references('id')
+            ->on('fp.expenses')
+            ->onUpdate('cascade');
+
+            $table->date('date');
+            $table->string('balance');
+
             $table->timestamps();
         });
     }

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('income_types', function (Blueprint $table) {
-            $table->id();
+        Schema::create('fp.income_types', function (Blueprint $table) {
+            $table->uuid('id')->primary()->unique();
+            $table->string('name');
+            $table->string('description');
+            $table->string('status');
             $table->timestamps();
         });
     }

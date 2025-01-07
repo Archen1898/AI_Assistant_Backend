@@ -11,8 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incomes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('fp.incomes', function (Blueprint $table) {
+            $table->uuid('id')->primary()->unique();
+            $table->string('amount');
+            $table->boolean('recurring');
+
+            $table->uuid('income_type_id');
+            $table->foreign('income_type_id')
+            ->references('id')
+            ->on('fp.income_types')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->uuid('balance_id');
+            $table->foreign('balance_id')
+            ->references('id')
+            ->on('fp.balances')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->date('date');
+
             $table->timestamps();
         });
     }
