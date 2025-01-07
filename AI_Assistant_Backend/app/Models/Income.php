@@ -19,11 +19,11 @@ class Income extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'balance_id' => 'uuid',
-        'amount' => 'string',
-        'recurring' => 'boolean',
-        'income_type' => 'id',
-        'amount' => 'string'
+        'balance_id',
+        'amount',
+        'recurring',
+        'income_type_id',
+        'date'
     ];
 
     public function balance():BelongsTo
