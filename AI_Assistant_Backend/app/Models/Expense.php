@@ -18,6 +18,9 @@ class Expense extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'name',
+        'description',
+        'date',
         'balance_id',
         'amount',
         'recurring',

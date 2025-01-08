@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
             $table->string('amount');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->boolean('recurring');
 
             $table->uuid('expense_type_id');
