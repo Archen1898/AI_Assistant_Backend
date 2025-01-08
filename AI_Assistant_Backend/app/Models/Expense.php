@@ -20,7 +20,6 @@ class Expense extends Model
     protected $fillable = [
         'name',
         'description',
-        'date',
         'balance_id',
         'amount',
         'recurring',
