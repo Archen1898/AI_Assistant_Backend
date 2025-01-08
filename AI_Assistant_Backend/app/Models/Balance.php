@@ -1,4 +1,4 @@
-<?php
+dd<?php
 
 namespace App\Models;
 
@@ -21,10 +21,10 @@ class Balance extends Model
 
     protected $fillable = [
         'user_id',
-        'date',
         'income_id',
         'expense_id',
-        'balance'
+        'balance',
+        'status',
 
     ];
 
@@ -39,6 +39,6 @@ class Balance extends Model
     }
     public function expense():HasMany
     {
-        return $this->hasMany(Expenses::class);
+        return $this->hasMany(Expense::class);
     }
 }

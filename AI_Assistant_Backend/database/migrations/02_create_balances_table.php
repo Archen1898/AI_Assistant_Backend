@@ -31,8 +31,7 @@ return new class extends Migration
             ->references('id')
             ->on('fp.expenses')
             ->onUpdate('cascade');
-
-            $table->date('date');
+            
             $table->string('balance');
 
             $table->timestamps();
