@@ -33,6 +33,7 @@ return new class extends Migration
             ->onUpdate('cascade');
             
             $table->string('balance');
+            $table->string('active');
 
             $table->timestamps();
         });

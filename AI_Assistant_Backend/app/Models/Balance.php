@@ -1,4 +1,4 @@
-dd<?php
+<?php
 
 namespace App\Models;
 
@@ -24,7 +24,7 @@ class Balance extends Model
         'income_id',
         'expense_id',
         'balance',
-        'status',
+        'active',
 
     ];
 
