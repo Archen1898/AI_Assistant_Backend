@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('fp.incomes', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->string('amount');
             $table->boolean('recurring');
 

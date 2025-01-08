@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model ;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,6 +19,9 @@ class Income extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'name',
+        'description',
+        'date',
         'balance_id',
         'amount',
         'recurring',
