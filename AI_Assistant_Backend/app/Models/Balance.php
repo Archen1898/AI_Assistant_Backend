@@ -21,8 +21,8 @@ class Balance extends Model
 
     protected $fillable = [
         'user_id',
-        'income_id',
-        'expense_id',
+        'total_income',
+        'total_expenses',
         'balance',
         'active',
 

@@ -144,8 +144,8 @@ class BalanceRepository implements CrudInterface
     public function dataFormat($request, Balance $balance) : object|null|array
     {
        $balance->user_id = $request['user_id'];
-       $balance->income_id = $request['income_id'];
-       $balance->expense_id = $request['expense_id'];
+       $balance->income_id = 0;
+       $balance->expense_id = 0;
        $balance->balance = 0;
        $balance->status = $request['status'];
        return $balance; 
@@ -154,11 +154,46 @@ class BalanceRepository implements CrudInterface
     public function dataFormatUpdate($request, Balance $balance) : object|null|array
     {
        $balance->user_id = $request['user_id'];
-       $balance->income_id = $request['income_id'];
-       $balance->expense_id = $request['expense_id'];
+       $balance->total_income = $this->calculateIncome($balance->id);
+       $balance->total_expenses = $this->calculateExpense($balance->id);
        $balance->balance = $this->calculateBalance($balance->id);
        $balance->status = $request['status'];
        return $balance; 
+    }
+    public function calculateIncome($balanceId){
+
+        try{
+            $balance = Balance::find($balanceId);
+            if(!$balance){
+                throw new ResourceNotFoundException(trans('expenses.notFoundById'), Response::HTTP_NOT_FOUND);
+            }
+            $incomeSum = Income::where('balance_id', $balanceId)->sum('amount');
+            if(!$incomeSum){
+                $incomeSum = 0;
+            }
+            return $incomeSum;
+        }catch(ResourceNotFoundException $e){
+            throw new ResourceNotFoundException($e->getMessage(), $e->getCode());
+        }catch(Exception $e){
+            throw new Exception(trans('messages.exception'), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function calculateExpense($balanceId){
+
+        try{
+            $balance = Balance::find($balanceId);
+            if(!$balance){
+                throw new ResourceNotFoundException(trans('expenses.notFoundById'), Response::HTTP_NOT_FOUND);
+            }
+            $expenseSum = Expense::where('balance_id', $balanceId)->sum('amount');
+            if(!$expenseSum){
+                $expenseSum = 0;
+            }
+            return $expenseSum;
+        }catch(ResourceNotFoundException $e){
+                
+            }
     }
 
     public function calculateBalance($balanceId){
@@ -185,5 +220,6 @@ class BalanceRepository implements CrudInterface
             throw new Exception(trans('messages.exception'), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
 
 }
