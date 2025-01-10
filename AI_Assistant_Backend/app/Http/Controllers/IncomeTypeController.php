@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 //Global Import
 
-use App\Http\Requests\IncomeTypeRequest;
-use App\Models\Income;
 use Exception;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 //Local Import
 use App\Traits\ResponseTrait;
 use App\Repositories\IncomeTypeRepository;
+use App\Http\Requests\IncomeTypeRequest;
 
 
 class IncomeTypeController extends Controller
