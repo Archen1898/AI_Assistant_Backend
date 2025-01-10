@@ -20,17 +20,9 @@ return new class extends Migration
             ->on('users')
             ->onUpdate('cascade');
             
-            $table->uuid('income_id');
-            $table->foreign('income_id')
-            ->references('id')
-            ->on('fp.incomes')
-            ->onUpdate('cascade');
+            $table->uuid('total_income');
 
-            $table->uuid('expense_id');
-            $table->foreign('expense_id')
-            ->references('id')
-            ->on('fp.expenses')
-            ->onUpdate('cascade');
+            $table->uuid('total_expenses');
             
             $table->string('balance');
             $table->string('active');

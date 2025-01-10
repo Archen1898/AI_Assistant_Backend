@@ -11,26 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('fp.incomes', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
-            $table->string('amount');
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('amount');
             $table->boolean('recurring');
 
-            $table->uuid('expense_type_id');
-            $table->foreign('expense_type_id')
-            ->references('id')
-            ->on('fp.income_types')
-            ->onDelete('set null')
-            ->onUpdate('cascade');
+            $table->uuid('total_income');
 
-            $table->uuid('balance_id');
-            $table->foreign('balance_id')
-            ->references('id')
-            ->on('fp.balances')
-            ->onDelete('set null')
-            ->onUpdate('cascade');
+            $table->uuid('total_expenses');
 
             $table->date('date');
 
@@ -43,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('incomes');
     }
 };
