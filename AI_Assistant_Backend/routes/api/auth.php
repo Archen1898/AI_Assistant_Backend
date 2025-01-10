@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 //LOCAL IMPORT
-use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\AuthController;
 
 Route::controller(AuthController::class)->group(function(){
     Route::post('login','login')->name('login');
