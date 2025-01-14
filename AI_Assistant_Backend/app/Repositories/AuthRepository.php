@@ -23,7 +23,7 @@ class AuthRepository
      * @throws Exception
      */
 
-    public function login(array $data):?User
+    public function login(array $data): User
     {
         
         try {
@@ -43,7 +43,7 @@ class AuthRepository
             throw new ResourceNotFoundException($e->getMessage(),$e->getCode());
         } catch (QueryException $e){
             Log::error($e);
-            throw new HttpException($e->getMessage(),response::HTTP_INTERNAL_SERVER_ERROR);
+            throw new Exception($e->getMessage(),response::HTTP_INTERNAL_SERVER_ERROR);
         }
         catch (Exception $e){
             Log::error($e);

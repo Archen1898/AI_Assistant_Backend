@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 //Global Import
+
+use App\Http\Requests\LoginRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +22,10 @@ class AuthController extends Controller
     {
         $this->authRepository = $AuthRepository;
     }
-    public function login()//Make LoginRequest
+    public function login(LoginRequest $loginRequest)//Make LoginRequest
     {
         try {
-            return $this->response(Response::HTTP_OK, trans('auth.login'), $this->authRepository->login($email, $password), null);
+            return $this->response(Response::HTTP_OK, trans('auth.login'), $this->authRepository->login($loginRequest->all()), null);
         } catch (Exception $exception) {
             return $this->response(Response::HTTP_BAD_REQUEST, $exception->getMessage(), [], $exception->getMessage());
         }
