@@ -4,12 +4,12 @@ namespace App\Repositories;
 
 //GLOBAL IMPORT
 use Exception;
-use App\ActiveInterface;
-use App\CreateInterface;
-use App\UpdateInterface;
+use App\Interfaces\ActiveInterface;
+use App\Interfaces\CreateInterface;
+use App\Interfaces\UpdateInterface;
 
 //LOCAL IMPORT
-use App\ViewAllInterface;
+use App\Interfaces\ViewAllInterface;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Collection;
 use App\Exceptions\ResourceNotFoundException;

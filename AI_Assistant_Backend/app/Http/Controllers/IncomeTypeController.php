@@ -31,7 +31,7 @@ class IncomeTypeController extends Controller
         }
     }
 
-    public function indexIncomeTypesByStatus($status)
+    public function indexIncomeTypesByStatus(int $status)
     {
         try {
             return $this->response(Response::HTTP_OK, trans('income_types.index'), $this->incomeTypeRepository->viewAllByStatus($status), null);
@@ -43,7 +43,7 @@ class IncomeTypeController extends Controller
     public function createIncomeType(IncomeTypeRequest $request)
     {
         try {
-            return $this->response(Response::HTTP_OK, trans('income_types.created'), $this->incomeTypeRepository->create($request->all()), null);
+            return $this->response(Response::HTTP_OK, trans('income_types.create'), $this->incomeTypeRepository->create($request->all()), null);
         } catch (Exception $exception) {
             return $this->response(Response::HTTP_BAD_REQUEST, $exception->getMessage(), [], $exception->getMessage());
         }
