@@ -49,10 +49,10 @@ class IncomeTypeController extends Controller
         }
     }
 
-    public function updateIncomeType(IncomeTypeRequest $request, int $id)
+    public function updateIncomeType(IncomeTypeRequest $request, $id)
     {
         try {
-            return $this->response(Response::HTTP_OK, trans('income_types.updated'), $this->incomeTypeRepository->update($id, $request->all()), null);
+            return $this->response(Response::HTTP_OK, trans('income_types.update'), $this->incomeTypeRepository->update($id, $request->all()), null);
         } catch (Exception $exception) {
             return $this->response(Response::HTTP_BAD_REQUEST, $exception->getMessage(), [], $exception->getMessage());
         }

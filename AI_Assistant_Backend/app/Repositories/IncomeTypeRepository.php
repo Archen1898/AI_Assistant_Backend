@@ -26,31 +26,31 @@ class IncomeTypeRepository implements ViewAllInterface, CreateInterface, ActiveI
     public function viewAll()
     {
         try{
-            $incomeTypes = IncomeType::orderBy('name', 'description')->get();
+            $incomeTypes = IncomeType::orderBy('name')->get();
             if($incomeTypes->isEmpty()){
                 throw new ResourceNotFoundException(trans('income_types.notFound'), Response::HTTP_NOT_FOUND);
             }
+            return $incomeTypes;
         }catch(ResourceNotFoundException $e){
             throw new ResourceNotFoundException($e->getMessage(), $e->getCode());
         }catch(Exception $e){
             throw new Exception(trans('messages.exception'), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-        return $incomeTypes;
     }
 
     public function viewAllByStatus($status)
     {
         try{
-            $incomeTypes = IncomeType::where('status', $status)->orderBy('name', 'description')->get();
+            $incomeTypes = IncomeType::where('status', $status)->orderBy('name')->get();
             if($incomeTypes->isEmpty()){
                 throw new ResourceNotFoundException(trans('income_types.notFound'), Response::HTTP_NOT_FOUND);
             }
+            return $incomeTypes;
         }catch(ResourceNotFoundException $e){
             throw new ResourceNotFoundException($e->getMessage(), $e->getCode());
         }catch(Exception $e){
             throw new Exception(trans('messages.exception'), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-        return $incomeTypes;
     }
 
     public function create(array $request): object|null|array
@@ -65,7 +65,7 @@ class IncomeTypeRepository implements ViewAllInterface, CreateInterface, ActiveI
         }
     }
 
-    public function update(int $id, array $request) : object|null|array
+    public function update($id, array $request) : object|null|array
     {
         try{
             $incomeType = IncomeType::find($id);

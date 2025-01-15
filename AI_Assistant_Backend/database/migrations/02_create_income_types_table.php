@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('fp.income_types', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description');
             $table->string('status');
             $table->timestamps();
